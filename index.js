@@ -21,9 +21,9 @@ function saveData(__dirname,folder,overwrite) {
     // ASK: czemu blad?
     // fs.mkdir(path.join(path, folder), (err)=> {
     // tez dziala
-    if (!overwrite && fs.existsSync(fullPath)) {
-        console.log('Katalog istnieje nie nadpisujemy');
-    } else {
+    // if (!overwrite && fs.existsSync(fullPath)) {
+        // console.log('Katalog istnieje nie nadpisujemy');
+    // } else {
         fs.mkdir(fullPath, (err)=> {
             if (err.code==='EEXIST') {
                 // console.warn(err);
@@ -42,7 +42,7 @@ function saveData(__dirname,folder,overwrite) {
         // console.log("🚀 ~ file: index.js:39 ~ //fs.mkdir ~ users:", users)
         // zolte
         // saveDataToFiles(users,folder,overwrite);    
-    }
+    // }
 }
 
 function readFile() {
