@@ -3,65 +3,78 @@ const fs = require('fs');
 const path = require('path');
 
 
-/* fs.readdir(path.join(__dirname), function(err,files) {
-    if (err) {
-        console.log(err);
-    } else {
-        files.forEach(function(file){
-            // console.log(file);
-
-            
-        })
-    }
-});  */
 // readFile();
+// pomarancz //saveData(__dirname,'katalog',false);  : rozwiazane: readFile() dziala, a nie działało
 saveData(__dirname,'katalog',false);
+console.log("🚀 ~ file: index.js:9 ~ __dirname:", __dirname)
 
-function saveData(path,folder,overwrite) {
-    const fullPath = `${path}/${folder}`;
-    let users;
+//23:19 path na __dirname
+function saveData(__dirname,folder,overwrite) {
+    //9:00 path na __dirname, ale dirname nie musze przekazywac? a w zadaniu bylo o przekazaniu popraw
+    // 10: dirname tez nie da sie podstawic bo obiekt?
+    const fullPath = `${__dirname}/${folder}`;
+    // zolte //let users;
+    console.log("🚀 ~ file: index.js:13 ~ fullPath:", fullPath)
+
+    // let users;
+    
     // ASK: czemu blad?
     // fs.mkdir(path.join(path, folder), (err)=> {
     // tez dziala
-    // if (!overwrite && fs.existsSync(fullPath)) {
-        // console.log('Katalog istnieje nie nadpisujemy');
-    // } else {
+    if (!overwrite && fs.existsSync(fullPath)) {
+        console.log('Katalog istnieje nie nadpisujemy');
+    } else {
         fs.mkdir(fullPath, (err)=> {
             if (err.code==='EEXIST') {
                 // console.warn(err);
+                // pomarancz : readFile()
                 console.log('Folder już istnieje');
+                // readFile();
             } else {
-                
+                // pomarancz : readFile()
                 console.log('mkdir zrobiony');
+                // readFile()
             }
         })
+        // pomarancz: //readFile()
         readFile();
-        console.log("🚀 ~ file: index.js:39 ~ //fs.mkdir ~ users:", users)
-
-        saveDataToFiles(users,folder,overwrite);    
-    // }
+        // pomarancz: // error 
+        // console.log("🚀 ~ file: index.js:39 ~ //fs.mkdir ~ users:", users)
+        // zolte
+        // saveDataToFiles(users,folder,overwrite);    
+    }
 }
 
 function readFile() {
+    // zolte //let users;
     let users;
-    fs.readFileSync(path.join(__dirname,'','2-read-write-users.json'),'utf-8' , function(err,files) {
-        /* console.log('path.join(__dirname',path.join(__dirname,'',''));
-        console.log('path.join(__dirname+file', path.join(__dirname,'','2-read-write-users.json'));
-        console.log('path.basename(__dirname)', path.basename(__dirname)); */
+    // pomarancz: test
+    let folder = 'katalog';
+    let overwrite = true;
+    fs.readFile(path.join(__dirname,'','2-read-write-users.json'),'utf-8' , function(err,files) {
+        
         if (err) {
-            users=[];
+            // zolte
+            // users=[];
             console.log(err);
         } else {
             // console.log(JSON.parse(files));
             // console.log(files.toString());
             users = JSON.parse(files)
-            console.log("🚀 ~ file: index.js:17 ~ fs.readFile ~ users:", users)
-            
+            // console.log("🚀 ~ file: index.js:17 ~ fs.readFile ~ users:", users)
+            // pomarancz: 22:34 tu przenosze bo jest users widoczne w consol log
+            saveDataToFiles(users,folder,overwrite);
             
             
         }
     })
-    return users;
+    // zolte
+    // pomarancz : a tu juz niedostepne petla nie wypuszcza zmiennej?
+    // console.log('users',  users);
+    // console.log( 'folder',folder);
+    // saveDataToFiles(users,folder,overwrite);
+    // pomarancz: 
+    // return users;
 }
 
 
@@ -105,6 +118,7 @@ function saveDataToFiles(users,folder,overwrite) {
             } else {
                 console.log('plik stworzone');
                 // ASK czemu to nie dziala zmienna tylko ostatnia, wiec po zakonczeniu fs.write-ale ono sie uruchamia w petli i zawiera kolejne rekordy
+                // zawiera ostatnia wartosc
                 console.log('plik stworzony', row2);
 
             }
@@ -113,11 +127,12 @@ function saveDataToFiles(users,folder,overwrite) {
     })
     
 }
-    
-    module.exports = {
+//pomarancz:  readFile();   : rozwiazane
+// readFile();   
+/*     module.exports = {
         saveData
 
-    };
+    }; */
 
 
 
