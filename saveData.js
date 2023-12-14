@@ -6,9 +6,9 @@ const path = require('path');
 // readFile();
 // pomarancz //saveData(__dirname,'katalog',false);  : rozwiazane: readFile() dziala, a nie działało
 // saveData(__dirname,'katalog',false);
-console.log("🚀 ~ file: index.js:9 ~ __dirname:", __dirname)
+// console.log("🚀 ~ file: index.js:9 ~ __dirname:", __dirname)
 //13:12 23:13 __dirname na sciezka
-console.log("🚀 ~ file: index.js:9 ~ sciezka:", sciezka)
+// console.log("🚀 ~ file: index.js:9 ~ sciezka:", sciezka)
 
 //12:12 23:19 path na __dirname
 //13:12 23:13 __dirname na sciezka
@@ -56,8 +56,8 @@ function readFile() {
     // zolte //let users;
     let users;
     // pomarancz: test
-    let folder = 'katalog';
-    let overwrite = true;
+    // let folder = 'katalog';
+    // let overwrite = true;
     //13:12 23:13 __dirname na sciezka
     fs.readFile(path.join(sciezka,'','2-read-write-users.json'),'utf-8' , function(err,files) {
         
@@ -110,7 +110,7 @@ function saveDataToFiles(users,folder,overwrite) {
         // let nameSurname = user.name.split(" ");
         nameSurname = wordsFromName(user.name)
         row1=('-----', user.name);
-        row2=`${user.id}-${nameSurname[0]}-${nameSurname[1]}`;
+        let row2=`${user.id}-${nameSurname[0]}-${nameSurname[1]}`;
         name=`Name: ${nameSurname[0]}`
         surname=(`Surname: ${nameSurname[1]}`);
         // console.log(surname," ~ file: index.js:34 ~ users.forEach ~ name:", name)
